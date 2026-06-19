@@ -1,119 +1,119 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Golden Detail</title>
-
 <style>
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#000;
-color:white;
-}
-
-header{
-padding:60px 20px;
-text-align:center;
-background:linear-gradient(to bottom,#111,#000);
-}
-
-h1{
-color:#d4af37;
-font-size:40px;
-margin-bottom:10px;
-}
-
-.hero-text{
-font-size:20px;
-margin-bottom:30px;
-}
-
-.btn{
-display:inline-block;
-padding:15px 25px;
-background:#d4af37;
-color:black;
-text-decoration:none;
-font-weight:bold;
-border-radius:8px;
-}
-
-section{
-padding:40px 20px;
-}
-
-h2{
-color:#d4af37;
-text-align:center;
-margin-bottom:20px;
-}
-
-.card{
-background:#111;
-padding:20px;
-margin:15px 0;
-border:1px solid #d4af37;
-border-radius:10px;
-}
-
-footer{
-padding:30px;
-text-align:center;
-background:#111;
+:root{--gold:#d6ad45;--dark:#050505;--soft:#151515}
+*{box-sizing:border-box}
+body{margin:0;background:#000;color:#fff;font-family:Arial,sans-serif}
+a{text-decoration:none}
+header{min-height:100vh;padding:24px;background:radial-gradient(circle at 70% 30%,#33220b,#050505 45%,#000);display:flex;flex-direction:column;justify-content:space-between}
+.nav{display:flex;justify-content:space-between;align-items:center}
+.logo{color:var(--gold);font-weight:800;letter-spacing:2px}
+.menu{color:#fff;font-size:26px}
+.hero{padding:70px 0 40px}
+.hero small{color:var(--gold);letter-spacing:3px}
+h1{font-size:48px;line-height:.95;margin:18px 0;color:#fff}
+h1 span,h2 span{color:var(--gold)}
+p{line-height:1.55;color:#ddd}
+.btn{display:inline-block;background:linear-gradient(135deg,#f0c86a,#b88422);color:#000;font-weight:800;padding:16px 22px;border-radius:12px;margin-top:18px}
+.btn-outline{border:1px solid var(--gold);color:#fff;background:transparent;margin-left:8px}
+.cars{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px}
+.car{height:170px;border:1px solid rgba(214,173,69,.5);border-radius:18px;background:linear-gradient(145deg,#222,#050505);display:flex;align-items:end;padding:16px;box-shadow:0 0 25px rgba(214,173,69,.12)}
+.car b{color:var(--gold)}
+section{padding:58px 22px}
+h2{text-align:center;font-size:34px;margin:0 0 12px}
+.sub{text-align:center;max-width:650px;margin:0 auto 28px}
+.grid{display:grid;gap:16px}
+.card{background:linear-gradient(180deg,#151515,#090909);border:1px solid rgba(214,173,69,.45);border-radius:18px;padding:22px}
+.card h3{color:var(--gold);margin-top:0}
+.before{display:grid;gap:16px}
+.compare{height:180px;border-radius:18px;border:1px solid var(--gold);background:linear-gradient(90deg,#222 50%,#050505 50%);position:relative;overflow:hidden}
+.compare:after{content:"ANTES  |  DESPUÉS";position:absolute;bottom:14px;left:0;right:0;text-align:center;color:#fff;font-weight:bold}
+.story{background:linear-gradient(120deg,#080808,#17110a,#050505)}
+.quote{border:1px solid var(--gold);border-radius:16px;padding:20px;text-align:center;color:#fff;font-size:20px}
+.contact{background:radial-gradient(circle at 50% 0,#2b1b07,#000 55%)}
+.info{border-top:1px solid rgba(214,173,69,.4);padding:16px 0;color:#ddd}
+footer{text-align:center;padding:35px 20px;background:#050505;color:#aaa}
+.float{position:fixed;right:18px;bottom:18px;background:#25D366;color:#000;font-weight:900;border-radius:50px;padding:15px 18px;z-index:10}
+@media(min-width:800px){
+.grid{grid-template-columns:repeat(3,1fr)}
+.before{grid-template-columns:repeat(3,1fr)}
+header{padding:36px 70px}
+h1{font-size:74px}
 }
 </style>
-
 </head>
 <body>
 
-<header>
-<h1>Golden Detail</h1>
-<p class="hero-text">
-Tu vehículo merece una atención excepcional
-</p>
+<header id="inicio">
+  <div class="nav">
+    <div class="logo">GOLDEN DETAIL<br><small>PREMIUM AUTO DETAILING</small></div>
+    <div class="menu">☰</div>
+  </div>
 
-<a class="btn" href="https://wa.me/59892006556">
-Solicitar Presupuesto
-</a>
+  <div class="hero">
+    <small>TRABAJAMOS SOLO EN MALDONADO</small>
+    <h1>Tu vehículo merece <span>una atención excepcional</span></h1>
+    <p>Cuidamos cada vehículo como si fuera nuestro. Desde autos premium hasta el auto del día a día, brindamos dedicación, detalle y calidad.</p>
+    <a class="btn" href="https://wa.me/59892006556?text=Hola%20Golden%20Detail,%20me%20gustaría%20solicitar%20un%20presupuesto%20para%20mi%20vehículo.">Solicitar Presupuesto</a>
+    <a class="btn btn-outline" href="#servicios">Ver servicios</a>
+
+    <div class="cars">
+      <div class="car"><b>Auto premium</b></div>
+      <div class="car"><b>Auto del día a día</b></div>
+    </div>
+  </div>
 </header>
 
-<section>
-<h2>Servicios</h2>
-
-<div class="card">
-Pulido de Faros
-</div>
-
-<div class="card">
-Descontaminación de Pintura
-</div>
-
-<div class="card">
-Detailing Interior y Exterior
-</div>
+<section id="servicios">
+  <h2>Servicios <span>Premium</span></h2>
+  <p class="sub">Soluciones pensadas para cuidar, recuperar y proteger tu vehículo.</p>
+  <div class="grid">
+    <div class="card"><h3>Lavado Premium</h3><p>Limpieza exterior e interior con técnicas seguras.</p></div>
+    <div class="card"><h3>Corrección de Pintura</h3><p>Recuperamos brillo, profundidad y presencia.</p></div>
+    <div class="card"><h3>Descontaminación</h3><p>Superficie suave, limpia y lista para proteger.</p></div>
+    <div class="card"><h3>Limpieza Interior</h3><p>Detalles del habitáculo tratados con cuidado.</p></div>
+    <div class="card"><h3>Pulido de Faros</h3><p>Mayor claridad, estética y seguridad.</p></div>
+    <div class="card"><h3>Protección</h3><p>Mantenimiento para conservar el resultado.</p></div>
+  </div>
 </section>
 
 <section>
-<h2>Contacto</h2>
+  <h2>Antes & <span>Después</span></h2>
+  <p class="sub">Transformaciones visuales pensadas para demostrar el potencial de cada vehículo.</p>
+  <div class="before">
+    <div class="compare"></div>
+    <div class="compare"></div>
+    <div class="compare"></div>
+  </div>
+</section>
 
-<div class="card">
-WhatsApp: +598 92 006 556
-</div>
+<section class="story">
+  <h2>Nuestra <span>Historia</span></h2>
+  <p>Golden Detail nació de una pasión por los vehículos y del deseo de construir algo propio. Siempre me ha gustado ver cómo un vehículo puede transformarse cuando recibe tiempo, dedicación y cuidado.</p>
+  <div class="quote">No buscamos lavar vehículos.<br><span>Buscamos devolverles su mejor versión.</span></div>
+  <a class="btn" href="https://wa.me/59892006556?text=Hola%20Golden%20Detail,%20me%20gustaría%20solicitar%20un%20presupuesto%20para%20mi%20vehículo.">Solicitar Presupuesto</a>
+</section>
 
-<div class="card">
-Instagram: @goldendetail98
-</div>
-
-<div class="card">
-Trabajamos solo en Maldonado
-</div>
+<section class="contact">
+  <h2>Contacto</h2>
+  <p class="sub">Contanos sobre tu vehículo y te enviaremos un presupuesto personalizado.</p>
+  <div class="info">📍 Trabajamos solo en Maldonado</div>
+  <div class="info">📱 WhatsApp: 092 006 556</div>
+  <div class="info">📸 Instagram: @goldendetail98</div>
+  <a class="btn" href="https://wa.me/59892006556?text=Hola%20Golden%20Detail,%20me%20gustaría%20solicitar%20un%20presupuesto%20para%20mi%20vehículo.">Escribir por WhatsApp</a>
 </section>
 
 <footer>
-Golden Detail © 2026
+  <b>GOLDEN DETAIL</b><br>
+  Perfección en cada detalle.<br><br>
+  © 2026 Golden Detail
 </footer>
+
+<a class="float" href="https://wa.me/59892006556?text=Hola%20Golden%20Detail,%20me%20gustaría%20solicitar%20un%20presupuesto%20para%20mi%20vehículo.">WhatsApp</a>
 
 </body>
 </html>
