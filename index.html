@@ -4,66 +4,198 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Golden Detail</title>
+
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#000;color:white;font-family:Arial,sans-serif}
-.loader{position:fixed;inset:0;background:#000;z-index:99;display:flex;align-items:center;justify-content:center;flex-direction:column;animation:fadeOut 1s ease forwards;animation-delay:5s}
-.loader:before{content:"";width:85%;height:120px;border-radius:50%;background:linear-gradient(90deg,transparent,rgba(214,173,69,.25),transparent);filter:blur(18px);animation:glow 2.5s ease-in-out infinite}
-.mark{border:1px solid #d6ad45;color:#d6ad45;width:105px;height:120px;border-radius:45% 45% 55% 55%;display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:bold;box-shadow:0 0 35px rgba(214,173,69,.35);opacity:0;animation:show 1s ease forwards;animation-delay:2s}
-.loader h1{color:#d6ad45;letter-spacing:4px;margin:22px 0 4px;opacity:0;animation:show 1s ease forwards;animation-delay:3s}
-.loader p{color:#ddd;letter-spacing:2px;margin:0;opacity:0;animation:show 1s ease forwards;animation-delay:3.5s}
-.hero{min-height:100vh;background:linear-gradient(90deg,rgba(0,0,0,.75),rgba(0,0,0,.15)),url("24096899-4B8B-4D5D-AF60-5029365007D2.png") center/cover no-repeat;display:flex;flex-direction:column;justify-content:space-between}
-.nav{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;background:rgba(0,0,0,.72);border-bottom:1px solid rgba(214,173,69,.35)}
-.logo{color:#d6ad45;font-weight:800;letter-spacing:2px}
-.whatsapp{border:1px solid #d6ad45;color:white;padding:10px 14px;border-radius:10px;font-size:13px}
-.content{padding:90px 24px 35px;max-width:720px}
-.kicker{color:#d6ad45;letter-spacing:3px;font-size:13px}
-h2{font-size:48px;line-height:.95;margin:18px 0;color:white}
-h2 span{color:#d6ad45}
-.text{font-size:18px;line-height:1.6;color:#eee}
-.btn{display:inline-block;background:linear-gradient(135deg,#f0c86a,#b88422);color:#000;padding:16px 22px;border-radius:10px;font-weight:900;text-decoration:none;margin-top:18px}
-.bottom{background:rgba(0,0,0,.78);border-top:1px solid rgba(214,173,69,.35);padding:18px;text-align:center;color:#d6ad45;letter-spacing:3px}
-section{padding:50px 22px;background:#000}
-h3{text-align:center;color:#d6ad45;font-size:32px}
-.card{border:1px solid rgba(214,173,69,.5);background:#111;border-radius:16px;padding:20px;margin:14px 0;color:#eee}
-.float{position:fixed;right:18px;bottom:18px;background:#25D366;color:#000;border-radius:50px;padding:14px 18px;font-weight:900;text-decoration:none;z-index:20}
-@keyframes show{to{opacity:1}}
-@keyframes glow{50%{opacity:.35;transform:scale(1.05)}}
-@keyframes fadeOut{to{opacity:0;visibility:hidden}}
+body{
+  margin:0;
+  background:#000;
+  color:white;
+  font-family:Arial,sans-serif;
+  overflow-x:hidden;
+}
+
+/* INTRO */
+.intro{
+  position:fixed;
+  inset:0;
+  background:#000;
+  z-index:999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  animation:introExit 1.2s ease forwards;
+  animation-delay:7s;
+}
+
+.reflection{
+  position:absolute;
+  width:80%;
+  height:120px;
+  top:28%;
+  opacity:0;
+  background:linear-gradient(90deg,transparent,rgba(214,173,69,.12),rgba(255,255,255,.18),rgba(214,173,69,.12),transparent);
+  filter:blur(10px);
+  border-radius:50%;
+}
+
+.reflection.one{animation:reflectOne 1.4s ease forwards;animation-delay:.8s}
+.reflection.two{animation:reflectTwo 1.4s ease forwards;animation-delay:2.2s}
+
+.shield{
+  width:118px;
+  height:138px;
+  border:2px solid #d6ad45;
+  border-radius:44% 44% 56% 56%;
+  color:#d6ad45;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:42px;
+  font-weight:900;
+  letter-spacing:2px;
+  opacity:0;
+  transform:scale(.85);
+  box-shadow:0 0 30px rgba(214,173,69,.35);
+  animation:shieldShow 1.2s ease forwards;
+  animation-delay:4.6s;
+}
+
+.line{
+  position:absolute;
+  width:0;
+  height:2px;
+  background:#d6ad45;
+  top:50%;
+  left:-20%;
+  box-shadow:0 0 18px #d6ad45;
+  animation:lineTravel 1.6s ease forwards;
+  animation-delay:3.8s;
+}
+
+.brand{
+  text-align:center;
+  opacity:0;
+  margin-top:24px;
+  animation:brandShow 1s ease forwards;
+  animation-delay:5.6s;
+}
+
+.brand h1{
+  margin:0;
+  color:#d6ad45;
+  letter-spacing:5px;
+  font-size:32px;
+}
+
+.brand p{
+  margin:8px 0 0;
+  color:#ddd;
+  letter-spacing:2px;
+  font-size:13px;
+}
+
+/* HOME */
+.home{
+  min-height:100vh;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.15),#000 92%),
+    url("24096899-4B8B-4D5D-AF60-5029365007D2.png") center/cover no-repeat;
+  opacity:0;
+  transform:scale(1.04);
+  animation:homeIn 1.4s ease forwards;
+  animation-delay:7.2s;
+}
+
+.home-inner{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:24px;
+}
+
+.cta{
+  display:inline-block;
+  background:linear-gradient(135deg,#f3cc72,#b98525);
+  color:#000;
+  padding:16px 22px;
+  border-radius:12px;
+  font-weight:900;
+  text-decoration:none;
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.note{
+  color:#d6ad45;
+  text-align:center;
+  font-size:13px;
+  letter-spacing:2px;
+  margin-bottom:18px;
+}
+
+@keyframes reflectOne{
+  0%{opacity:0;transform:translateX(-40px)}
+  45%{opacity:1}
+  100%{opacity:0;transform:translateX(30px)}
+}
+
+@keyframes reflectTwo{
+  0%{opacity:0;transform:translateX(40px)}
+  45%{opacity:1}
+  100%{opacity:0;transform:translateX(-30px)}
+}
+
+@keyframes lineTravel{
+  0%{width:0;left:-20%;opacity:0}
+  30%{opacity:1}
+  70%{width:70%;left:15%}
+  100%{width:0;left:50%;opacity:0}
+}
+
+@keyframes shieldShow{
+  to{opacity:1;transform:scale(1)}
+}
+
+@keyframes brandShow{
+  to{opacity:1}
+}
+
+@keyframes introExit{
+  to{opacity:0;visibility:hidden}
+}
+
+@keyframes homeIn{
+  to{opacity:1;transform:scale(1)}
+}
 </style>
 </head>
+
 <body>
 
-<div class="loader">
-  <div class="mark">GD</div>
-  <h1>GOLDEN DETAIL</h1>
-  <p>PREMIUM AUTO DETAILING</p>
+<div class="intro">
+  <div class="reflection one"></div>
+  <div class="reflection two"></div>
+  <div class="line"></div>
+
+  <div class="shield">GD</div>
+
+  <div class="brand">
+    <h1>GOLDEN DETAIL</h1>
+    <p>PREMIUM AUTO DETAILING</p>
+  </div>
 </div>
 
-<header class="hero">
-  <div class="nav">
-    <div class="logo">GOLDEN DETAIL</div>
-    <a class="whatsapp" href="https://wa.me/59892006556">WHATSAPP</a>
+<main class="home">
+  <div class="home-inner">
+    <a class="cta" href="https://wa.me/59892006556?text=Hola%20Golden%20Detail,%20me%20gustaría%20solicitar%20un%20presupuesto%20para%20mi%20vehículo.">
+      SOLICITAR PRESUPUESTO
+    </a>
+    <div class="note">TRABAJAMOS SOLO EN MALDONADO</div>
   </div>
-
-  <div class="content">
-    <div class="kicker">DETAILING PREMIUM PARA AUTOS DE LUJO Y DEL DÍA A DÍA</div>
-    <h2>PERFECCIÓN <span>EN CADA DETALLE</span></h2>
-    <p class="text">Cuidamos cada vehículo como si fuera nuestro. Desde superdeportivos hasta tu auto del día a día, brindamos calidad premium en cada servicio.</p>
-    <a class="btn" href="https://wa.me/59892006556?text=Hola%20Golden%20Detail,%20me%20gustaría%20solicitar%20un%20presupuesto%20para%20mi%20vehículo.">SOLICITAR PRESUPUESTO</a>
-  </div>
-
-  <div class="bottom">TRABAJAMOS SOLO EN MALDONADO</div>
-</header>
-
-<section>
-  <h3>Servicios Premium</h3>
-  <div class="card">Lavado Premium</div>
-  <div class="card">Corrección de Pintura</div>
-  <div class="card">Pulido de Faros</div>
-</section>
-
-<a class="float" href="https://wa.me/59892006556?text=Hola%20Golden%20Detail,%20me%20gustaría%20solicitar%20un%20presupuesto%20para%20mi%20vehículo.">WhatsApp</a>
+</main>
 
 </body>
 </html>
