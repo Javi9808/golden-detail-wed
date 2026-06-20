@@ -6,66 +6,64 @@
 <title>Golden Detail</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#000;color:white;font-family:Arial,sans-serif;overflow-x:hidden}
-.loader{
-position:fixed;inset:0;background:#000;z-index:99;
-display:flex;align-items:center;justify-content:center;flex-direction:column;
-animation:hide 1s ease forwards;animation-delay:5s
-}
-.car-reflect{
-width:85%;height:160px;position:relative;margin-bottom:35px;
-background:radial-gradient(circle at 65% 45%,rgba(214,173,69,.25),transparent 28%);
-opacity:0;animation:car 2s ease forwards
-}
-.car-reflect:before{
-content:"";position:absolute;left:8%;right:8%;top:65px;height:2px;
-background:linear-gradient(90deg,transparent,#d6ad45,white,#d6ad45,transparent);
-box-shadow:0 0 25px #d6ad45;border-radius:100%;animation:shine 2s ease infinite
-}
-.car-reflect:after{
-content:"";position:absolute;right:12%;top:78px;width:70px;height:8px;
-background:white;border-radius:30px;box-shadow:0 0 25px white
-}
-.logo-draw{
-width:120px;height:140px;border:2px solid #d6ad45;border-radius:45% 45% 55% 55%;
-display:flex;align-items:center;justify-content:center;
-font-size:42px;color:#d6ad45;font-weight:bold;opacity:0;
-box-shadow:0 0 25px rgba(214,173,69,.35);
-animation:logo 1.4s ease forwards;animation-delay:2.2s
-}
-.brand{
-opacity:0;text-align:center;margin-top:22px;animation:brand 1s ease forwards;animation-delay:3.5s
-}
-.brand h1{color:#d6ad45;margin:0;font-size:34px;letter-spacing:4px}
-.brand p{margin:8px 0;color:#ddd;letter-spacing:2px}
-.home{min-height:100vh;padding:70px 24px;text-align:center;background:linear-gradient(#050505,#000)}
-.home h2{font-size:46px;color:#d6ad45}
-.home p{font-size:21px;line-height:1.5}
-.btn{display:inline-block;background:#d6ad45;color:#000;padding:16px 26px;border-radius:12px;font-weight:bold;text-decoration:none;margin-top:20px}
-@keyframes car{to{opacity:1}}
-@keyframes shine{50%{filter:brightness(1.8)}}
-@keyframes logo{to{opacity:1;transform:scale(1.05)}}
-@keyframes brand{to{opacity:1}}
-@keyframes hide{to{opacity:0;visibility:hidden}}
+body{margin:0;background:#000;color:white;font-family:Arial,sans-serif}
+.loader{position:fixed;inset:0;background:#000;z-index:99;display:flex;align-items:center;justify-content:center;flex-direction:column;animation:fadeOut 1s ease forwards;animation-delay:5s}
+.loader:before{content:"";width:85%;height:120px;border-radius:50%;background:linear-gradient(90deg,transparent,rgba(214,173,69,.25),transparent);filter:blur(18px);animation:glow 2.5s ease-in-out infinite}
+.mark{border:1px solid #d6ad45;color:#d6ad45;width:105px;height:120px;border-radius:45% 45% 55% 55%;display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:bold;box-shadow:0 0 35px rgba(214,173,69,.35);opacity:0;animation:show 1s ease forwards;animation-delay:2s}
+.loader h1{color:#d6ad45;letter-spacing:4px;margin:22px 0 4px;opacity:0;animation:show 1s ease forwards;animation-delay:3s}
+.loader p{color:#ddd;letter-spacing:2px;margin:0;opacity:0;animation:show 1s ease forwards;animation-delay:3.5s}
+.hero{min-height:100vh;background:linear-gradient(90deg,rgba(0,0,0,.75),rgba(0,0,0,.15)),url("24096899-4B8B-4D5D-AF60-5029365007D2.png") center/cover no-repeat;display:flex;flex-direction:column;justify-content:space-between}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;background:rgba(0,0,0,.72);border-bottom:1px solid rgba(214,173,69,.35)}
+.logo{color:#d6ad45;font-weight:800;letter-spacing:2px}
+.whatsapp{border:1px solid #d6ad45;color:white;padding:10px 14px;border-radius:10px;font-size:13px}
+.content{padding:90px 24px 35px;max-width:720px}
+.kicker{color:#d6ad45;letter-spacing:3px;font-size:13px}
+h2{font-size:48px;line-height:.95;margin:18px 0;color:white}
+h2 span{color:#d6ad45}
+.text{font-size:18px;line-height:1.6;color:#eee}
+.btn{display:inline-block;background:linear-gradient(135deg,#f0c86a,#b88422);color:#000;padding:16px 22px;border-radius:10px;font-weight:900;text-decoration:none;margin-top:18px}
+.bottom{background:rgba(0,0,0,.78);border-top:1px solid rgba(214,173,69,.35);padding:18px;text-align:center;color:#d6ad45;letter-spacing:3px}
+section{padding:50px 22px;background:#000}
+h3{text-align:center;color:#d6ad45;font-size:32px}
+.card{border:1px solid rgba(214,173,69,.5);background:#111;border-radius:16px;padding:20px;margin:14px 0;color:#eee}
+.float{position:fixed;right:18px;bottom:18px;background:#25D366;color:#000;border-radius:50px;padding:14px 18px;font-weight:900;text-decoration:none;z-index:20}
+@keyframes show{to{opacity:1}}
+@keyframes glow{50%{opacity:.35;transform:scale(1.05)}}
+@keyframes fadeOut{to{opacity:0;visibility:hidden}}
 </style>
 </head>
 <body>
 
 <div class="loader">
-  <div class="car-reflect"></div>
-  <div class="logo-draw">GD</div>
-  <div class="brand">
-    <h1>GOLDEN DETAIL</h1>
-    <p>PREMIUM AUTO DETAILING</p>
-    <p>Perfección en cada detalle</p>
-  </div>
+  <div class="mark">GD</div>
+  <h1>GOLDEN DETAIL</h1>
+  <p>PREMIUM AUTO DETAILING</p>
 </div>
 
-<section class="home">
-  <h2>Golden Detail</h2>
-  <p>Tu vehículo merece una atención excepcional.</p>
-  <a class="btn" href="https://wa.me/59892006556?text=Hola%20Golden%20Detail,%20me%20gustaría%20solicitar%20un%20presupuesto%20para%20mi%20vehículo.">Solicitar Presupuesto</a>
+<header class="hero">
+  <div class="nav">
+    <div class="logo">GOLDEN DETAIL</div>
+    <a class="whatsapp" href="https://wa.me/59892006556">WHATSAPP</a>
+  </div>
+
+  <div class="content">
+    <div class="kicker">DETAILING PREMIUM PARA AUTOS DE LUJO Y DEL DÍA A DÍA</div>
+    <h2>PERFECCIÓN <span>EN CADA DETALLE</span></h2>
+    <p class="text">Cuidamos cada vehículo como si fuera nuestro. Desde superdeportivos hasta tu auto del día a día, brindamos calidad premium en cada servicio.</p>
+    <a class="btn" href="https://wa.me/59892006556?text=Hola%20Golden%20Detail,%20me%20gustaría%20solicitar%20un%20presupuesto%20para%20mi%20vehículo.">SOLICITAR PRESUPUESTO</a>
+  </div>
+
+  <div class="bottom">TRABAJAMOS SOLO EN MALDONADO</div>
+</header>
+
+<section>
+  <h3>Servicios Premium</h3>
+  <div class="card">Lavado Premium</div>
+  <div class="card">Corrección de Pintura</div>
+  <div class="card">Pulido de Faros</div>
 </section>
+
+<a class="float" href="https://wa.me/59892006556?text=Hola%20Golden%20Detail,%20me%20gustaría%20solicitar%20un%20presupuesto%20para%20mi%20vehículo.">WhatsApp</a>
 
 </body>
 </html>
