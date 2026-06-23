@@ -6,78 +6,120 @@
 <title>Golden Detail</title>
 
 <style>
+:root{
+  --gold:#d6ad45;
+  --gold2:#f1c96b;
+  --black:#000;
+}
+
 *{box-sizing:border-box}
-body{
+
+html,body{
   margin:0;
+  width:100%;
+  min-height:100%;
   background:#000;
   color:#fff;
-  font-family:Arial, sans-serif;
+  font-family:Arial, Helvetica, sans-serif;
   overflow-x:hidden;
 }
 
-/* INTRO */
+/* ================= INTRO ================= */
+
 .intro{
   position:fixed;
   inset:0;
   background:#000;
-  z-index:999;
+  z-index:9999;
   display:flex;
   align-items:center;
   justify-content:center;
-  flex-direction:column;
-  animation:hideIntro 1s ease forwards;
-  animation-delay:8.5s;
+  overflow:hidden;
+  animation:introOut 1.1s ease forwards;
+  animation-delay:8.6s;
 }
 
-.lights{
+.intro-scene{
   position:absolute;
-  width:100%;
-  height:100%;
-  background:
-    radial-gradient(circle at 30% 48%, rgba(214,173,69,.55), transparent 8%),
-    radial-gradient(circle at 70% 48%, rgba(214,173,69,.55), transparent 8%);
+  inset:0;
   opacity:0;
-  animation:lights 1.2s ease forwards;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* escena 02 - lentes */
+.headlights{
+  animation:sceneFade 1.15s ease forwards;
   animation-delay:1s;
 }
 
-.carLine{
+.headlights::before,
+.headlights::after{
+  content:"";
   position:absolute;
-  width:70%;
-  height:2px;
-  top:46%;
-  background:linear-gradient(90deg,transparent,#d6ad45,#fff,#d6ad45,transparent);
+  width:120px;
+  height:18px;
+  top:48%;
+  border-radius:100px;
+  background:linear-gradient(90deg,transparent,var(--gold2),#fff,var(--gold2),transparent);
+  box-shadow:0 0 32px rgba(214,173,69,.8);
   filter:blur(.4px);
-  opacity:0;
-  animation:carLine 2.5s ease forwards;
-  animation-delay:2s;
 }
 
-.goldLine{
+.headlights::before{left:22%}
+.headlights::after{right:22%}
+
+/* escena 03 y 04 - medio auto misterioso */
+.car-glow{
+  width:80vw;
+  height:190px;
+  border-radius:50%;
+  background:
+    linear-gradient(90deg,transparent,rgba(214,173,69,.12),rgba(255,255,255,.18),rgba(214,173,69,.1),transparent);
+  filter:blur(10px);
+  transform:translateX(-35px);
+  animation:sceneFade 1.25s ease forwards;
+  animation-delay:2.2s;
+}
+
+.car-glow.two{
+  transform:translateX(35px) scaleX(-1);
+  animation-delay:3.35s;
+}
+
+/* línea dorada */
+.travel-line{
   position:absolute;
+  top:50%;
+  left:-40%;
   width:0;
   height:2px;
-  background:#d6ad45;
-  box-shadow:0 0 18px #d6ad45;
-  animation:goldTravel 1.3s ease forwards;
-  animation-delay:4.3s;
+  background:var(--gold);
+  box-shadow:0 0 22px var(--gold);
+  animation:lineMove 1.4s ease forwards;
+  animation-delay:4.7s;
+}
+
+/* escudo oficial */
+.logo-wrap{
+  flex-direction:column;
+  animation:logoScene 2.4s ease forwards;
+  animation-delay:5.4s;
 }
 
 .shield{
-  width:130px;
-  height:150px;
-  border:2px solid #d6ad45;
-  border-radius:42% 42% 55% 55%;
-  color:#d6ad45;
+  width:132px;
+  height:156px;
+  border:2px solid var(--gold);
+  border-radius:43% 43% 56% 56%;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  opacity:0;
-  transform:scale(.85);
-  box-shadow:0 0 35px rgba(214,173,69,.35);
-  animation:showShield .8s ease forwards;
-  animation-delay:5.3s;
+  color:var(--gold);
+  box-shadow:0 0 36px rgba(214,173,69,.32);
+  background:rgba(0,0,0,.2);
 }
 
 .stars{
@@ -87,242 +129,271 @@ body{
 }
 
 .gd{
-  font-size:38px;
+  font-size:40px;
   font-weight:900;
   letter-spacing:2px;
 }
 
-.carIcon{
-  font-size:22px;
-  margin-top:6px;
-}
-
-.brandIntro{
-  text-align:center;
-  opacity:0;
-  margin-top:22px;
-  animation:showBrand 1s ease forwards;
-  animation-delay:6.3s;
-}
-
-.brandIntro h1{
-  color:#d6ad45;
-  letter-spacing:4px;
-  font-size:30px;
-  margin:0;
-}
-
-.brandIntro p{
-  color:#ddd;
-  letter-spacing:2px;
-  font-size:12px;
+.car-silhouette{
+  width:58px;
+  height:16px;
   margin-top:8px;
-}
-
-/* HOME */
-.home{
-  min-height:100vh;
-  background:
-    linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.35),#000 94%),
-    url("24096899-4B8B-4D5D-AF60-5029365007D2.png") center/contain no-repeat;
-  background-color:#000;
-  opacity:0;
-  transform:scale(1.04);
-  animation:homeIn 1.2s ease forwards;
-  animation-delay:8.6s;
+  border-top:2px solid var(--gold);
+  border-radius:50% 50% 0 0;
   position:relative;
 }
 
-.topBar{
+.car-silhouette::before,
+.car-silhouette::after{
+  content:"";
   position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  padding:18px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  z-index:5;
+  bottom:-5px;
+  width:8px;
+  height:8px;
+  border:1px solid var(--gold);
+  border-radius:50%;
 }
 
-.menuBtn{
-  background:rgba(0,0,0,.35);
-  color:#d6ad45;
-  border:1px solid rgba(214,173,69,.5);
-  border-radius:12px;
-  padding:10px 14px;
-  font-size:24px;
-}
+.car-silhouette::before{left:9px}
+.car-silhouette::after{right:9px}
 
-.homeBottom{
-  position:absolute;
-  left:18px;
-  right:18px;
-  bottom:22px;
-  z-index:5;
-}
-
-.cta{
-  display:block;
+.brand{
   text-align:center;
-  background:linear-gradient(135deg,#f2cd73,#b88425);
-  color:#000;
-  font-weight:900;
-  padding:16px 22px;
-  border-radius:14px;
-  text-decoration:none;
-  box-shadow:0 0 22px rgba(214,173,69,.25);
+  margin-top:24px;
 }
 
-.location{
-  text-align:center;
-  color:#d6ad45;
-  letter-spacing:2px;
+.brand h1{
+  margin:0;
+  color:var(--gold);
+  font-size:30px;
+  letter-spacing:4px;
+}
+
+.brand p{
+  margin:8px 0 0;
+  color:#ddd;
   font-size:12px;
-  margin-top:14px;
+  letter-spacing:2px;
 }
 
-/* GLASS MENU */
-.menuOverlay{
+/* ================= HOME ================= */
+
+.home{
+  position:relative;
+  min-height:100vh;
+  background:#000;
+  opacity:0;
+  transform:scale(1.035);
+  animation:homeIn 1.2s ease forwards;
+  animation-delay:8.75s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.home-img{
+  width:100%;
+  height:100vh;
+  object-fit:contain;
+  object-position:center;
+  display:block;
+  background:#000;
+}
+
+.home::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.05),rgba(0,0,0,.28));
+}
+
+/* Hotspots invisibles para no poner texto encima */
+.menu-open{
+  position:absolute;
+  top:16px;
+  right:14px;
+  width:62px;
+  height:58px;
+  z-index:5;
+  background:transparent;
+  border:0;
+}
+
+.cta-hotspot{
+  position:absolute;
+  left:14%;
+  right:14%;
+  bottom:112px;
+  height:58px;
+  z-index:5;
+  display:block;
+}
+
+/* ================= GLASS MENU ================= */
+
+.glass-menu{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.45);
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-  z-index:1000;
+  z-index:10000;
   opacity:0;
   pointer-events:none;
-  transition:.25s ease;
+  transition:opacity .25s ease;
+  background:rgba(0,0,0,.38);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
 }
 
-.menuOverlay.open{
+.glass-menu.open{
   opacity:1;
   pointer-events:auto;
 }
 
-.menuPanel{
-  width:100%;
+.menu-content{
   height:100%;
-  padding:34px 28px;
+  width:100%;
+  padding:72px 30px 34px;
   display:flex;
   flex-direction:column;
   justify-content:center;
 }
 
-.closeBtn{
+.close{
   position:absolute;
   top:20px;
   right:20px;
-  background:transparent;
-  color:#d6ad45;
+  color:var(--gold);
   border:1px solid rgba(214,173,69,.55);
-  border-radius:12px;
-  padding:10px 14px;
-  font-size:22px;
+  background:rgba(0,0,0,.18);
+  border-radius:14px;
+  width:48px;
+  height:48px;
+  font-size:28px;
 }
 
-.menuItem{
-  display:block;
-  color:#fff;
+.menu-link{
+  color:white;
   text-decoration:none;
   font-size:25px;
-  padding:17px 0;
-  border-bottom:1px solid rgba(214,173,69,.22);
+  padding:16px 0;
+  border-bottom:1px solid rgba(214,173,69,.23);
   letter-spacing:1px;
 }
 
-.menuItem span{
-  color:#d6ad45;
-  margin-right:10px;
+.menu-link span{
+  color:var(--gold);
+  margin-right:12px;
+  font-size:17px;
 }
 
-.menuWhatsapp{
+.menu-wsp{
   margin-top:34px;
   display:block;
   text-align:center;
-  background:linear-gradient(135deg,#f2cd73,#b88425);
-  color:#000;
-  padding:16px 20px;
-  border-radius:14px;
-  font-weight:900;
   text-decoration:none;
+  color:#000;
+  font-weight:900;
+  padding:17px 18px;
+  border-radius:16px;
+  background:linear-gradient(135deg,var(--gold2),#b88425);
 }
 
-@keyframes lights{
+/* ================= ANIMATIONS ================= */
+
+@keyframes sceneFade{
   0%{opacity:0}
-  45%{opacity:1}
+  35%{opacity:1}
   100%{opacity:0}
 }
-@keyframes carLine{
-  0%{opacity:0;transform:translateX(-35px)}
-  40%{opacity:1}
-  100%{opacity:0;transform:translateX(35px)}
+
+@keyframes lineMove{
+  0%{left:-40%;width:0;opacity:0}
+  30%{opacity:1}
+  70%{left:18%;width:64%}
+  100%{left:52%;width:0;opacity:0}
 }
-@keyframes goldTravel{
-  0%{width:0;opacity:0}
-  35%{width:70%;opacity:1}
-  100%{width:0;opacity:0}
+
+@keyframes logoScene{
+  0%{opacity:0;transform:scale(.88)}
+  25%{opacity:1;transform:scale(1)}
+  85%{opacity:1;transform:scale(1)}
+  100%{opacity:0;transform:scale(.96)}
 }
-@keyframes showShield{
-  to{opacity:1;transform:scale(1)}
-}
-@keyframes showBrand{
-  to{opacity:1}
-}
-@keyframes hideIntro{
+
+@keyframes introOut{
   to{opacity:0;visibility:hidden}
 }
+
 @keyframes homeIn{
   to{opacity:1;transform:scale(1)}
+}
+
+@media(min-width:768px){
+  .home-img{
+    max-width:430px;
+    height:100vh;
+  }
 }
 </style>
 </head>
 
 <body>
 
+<!-- INTRO -->
 <div class="intro">
-  <div class="lights"></div>
-  <div class="carLine"></div>
-  <div class="goldLine"></div>
+  <div class="intro-scene headlights"></div>
+  <div class="intro-scene"><div class="car-glow"></div></div>
+  <div class="intro-scene"><div class="car-glow two"></div></div>
+  <div class="travel-line"></div>
 
-  <div class="shield">
-    <div class="stars">★★★★★</div>
-    <div class="gd">GD</div>
-    <div class="carIcon">▱▰▱</div>
-  </div>
+  <div class="intro-scene logo-wrap">
+    <div class="shield">
+      <div class="stars">★★★★★</div>
+      <div class="gd">GD</div>
+      <div class="car-silhouette"></div>
+    </div>
 
-  <div class="brandIntro">
-    <h1>GOLDEN DETAIL</h1>
-    <p>PREMIUM AUTO DETAILING</p>
+    <div class="brand">
+      <h1>GOLDEN DETAIL</h1>
+      <p>PREMIUM AUTO DETAILING</p>
+    </div>
   </div>
 </div>
 
-<section class="home">
-  <div class="topBar">
-    <div></div>
-    <button class="menuBtn" onclick="openMenu()">⋮</button>
-  </div>
+<!-- HOME -->
+<main class="home">
+  <img
+    class="home-img"
+    src="24096899-4B8B-4D5D-AF60-5029365007D2.png"
+    alt="Golden Detail Home"
+  />
 
-  <div class="homeBottom">
-    <a class="cta" href="https://wa.me/59892006556?text=Hola%20Golden%20Detail,%20me%20gustaría%20solicitar%20un%20presupuesto%20para%20mi%20vehículo.">
-      SOLICITAR PRESUPUESTO
-    </a>
-    <div class="location">TRABAJAMOS SOLO EN MALDONADO</div>
-  </div>
-</section>
+  <button class="menu-open" onclick="openMenu()" aria-label="Abrir menú"></button>
 
-<div class="menuOverlay" id="menu">
-  <button class="closeBtn" onclick="closeMenu()">×</button>
+  <a
+    class="cta-hotspot"
+    href="https://wa.me/59892006556?text=Hola%20Golden%20Detail,%20me%20gustaría%20solicitar%20un%20presupuesto%20para%20mi%20vehículo."
+    aria-label="Solicitar presupuesto"
+  ></a>
+</main>
 
-  <div class="menuPanel">
-    <a class="menuItem" href="#"><span>01</span>Inicio</a>
-    <a class="menuItem" href="#"><span>02</span>Servicios</a>
-    <a class="menuItem" href="#"><span>03</span>Antes & Después</a>
-    <a class="menuItem" href="#"><span>04</span>Nuestra Historia</a>
-    <a class="menuItem" href="#"><span>05</span>Testimonios</a>
-    <a class="menuItem" href="#"><span>06</span>Contacto</a>
+<!-- MENU GLASS -->
+<div class="glass-menu" id="menu">
+  <button class="close" onclick="closeMenu()">×</button>
 
-    <a class="menuWhatsapp" href="https://wa.me/59892006556?text=Hola%20Golden%20Detail,%20me%20gustaría%20solicitar%20un%20presupuesto%20para%20mi%20vehículo.">
+  <div class="menu-content">
+    <a class="menu-link" href="#"><span>01</span>Inicio</a>
+    <a class="menu-link" href="#"><span>02</span>Servicios</a>
+    <a class="menu-link" href="#"><span>03</span>Antes & Después</a>
+    <a class="menu-link" href="#"><span>04</span>Nuestra Historia</a>
+    <a class="menu-link" href="#"><span>05</span>Testimonios</a>
+    <a class="menu-link" href="#"><span>06</span>Contacto</a>
+
+    <a
+      class="menu-wsp"
+      href="https://wa.me/59892006556?text=Hola%20Golden%20Detail,%20me%20gustaría%20solicitar%20un%20presupuesto%20para%20mi%20vehículo."
+    >
       ESCRIBIR POR WHATSAPP
     </a>
   </div>
@@ -332,6 +403,7 @@ body{
 function openMenu(){
   document.getElementById("menu").classList.add("open");
 }
+
 function closeMenu(){
   document.getElementById("menu").classList.remove("open");
 }
