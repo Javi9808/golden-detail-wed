@@ -1,405 +1,255 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Golden Detail</title>
 
 <style>
-:root{
-  --gold:#d6ad45;
-  --gold2:#f1c96b;
-  --black:#000;
-}
-
 *{box-sizing:border-box}
 
 html,body{
   margin:0;
-  width:100%;
-  min-height:100%;
   background:#000;
-  color:#fff;
-  font-family:Arial, Helvetica, sans-serif;
-  overflow-x:hidden;
+  overflow:hidden;
+  font-family:Arial, sans-serif;
 }
-
-/* ================= INTRO ================= */
 
 .intro{
   position:fixed;
   inset:0;
   background:#000;
   z-index:9999;
-  display:flex;
-  align-items:center;
-  justify-content:center;
   overflow:hidden;
-  animation:introOut 1.1s ease forwards;
-  animation-delay:8.6s;
 }
 
-.intro-scene{
+.scene{
   position:absolute;
   inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
   opacity:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  transform:scale(1.04);
+  transition:opacity .45s ease, transform 1.1s ease;
 }
 
-/* escena 02 - lentes */
-.headlights{
-  animation:sceneFade 1.15s ease forwards;
-  animation-delay:1s;
+.scene.active{
+  opacity:1;
+  transform:scale(1);
 }
 
-.headlights::before,
-.headlights::after{
-  content:"";
-  position:absolute;
-  width:120px;
-  height:18px;
-  top:48%;
-  border-radius:100px;
-  background:linear-gradient(90deg,transparent,var(--gold2),#fff,var(--gold2),transparent);
-  box-shadow:0 0 32px rgba(214,173,69,.8);
-  filter:blur(.4px);
+.scene.fade{
+  opacity:0;
 }
-
-.headlights::before{left:22%}
-.headlights::after{right:22%}
-
-/* escena 03 y 04 - medio auto misterioso */
-.car-glow{
-  width:80vw;
-  height:190px;
-  border-radius:50%;
-  background:
-    linear-gradient(90deg,transparent,rgba(214,173,69,.12),rgba(255,255,255,.18),rgba(214,173,69,.1),transparent);
-  filter:blur(10px);
-  transform:translateX(-35px);
-  animation:sceneFade 1.25s ease forwards;
-  animation-delay:2.2s;
-}
-
-.car-glow.two{
-  transform:translateX(35px) scaleX(-1);
-  animation-delay:3.35s;
-}
-
-/* línea dorada */
-.travel-line{
-  position:absolute;
-  top:50%;
-  left:-40%;
-  width:0;
-  height:2px;
-  background:var(--gold);
-  box-shadow:0 0 22px var(--gold);
-  animation:lineMove 1.4s ease forwards;
-  animation-delay:4.7s;
-}
-
-/* escudo oficial */
-.logo-wrap{
-  flex-direction:column;
-  animation:logoScene 2.4s ease forwards;
-  animation-delay:5.4s;
-}
-
-.shield{
-  width:132px;
-  height:156px;
-  border:2px solid var(--gold);
-  border-radius:43% 43% 56% 56%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  color:var(--gold);
-  box-shadow:0 0 36px rgba(214,173,69,.32);
-  background:rgba(0,0,0,.2);
-}
-
-.stars{
-  font-size:13px;
-  letter-spacing:3px;
-  margin-bottom:8px;
-}
-
-.gd{
-  font-size:40px;
-  font-weight:900;
-  letter-spacing:2px;
-}
-
-.car-silhouette{
-  width:58px;
-  height:16px;
-  margin-top:8px;
-  border-top:2px solid var(--gold);
-  border-radius:50% 50% 0 0;
-  position:relative;
-}
-
-.car-silhouette::before,
-.car-silhouette::after{
-  content:"";
-  position:absolute;
-  bottom:-5px;
-  width:8px;
-  height:8px;
-  border:1px solid var(--gold);
-  border-radius:50%;
-}
-
-.car-silhouette::before{left:9px}
-.car-silhouette::after{right:9px}
-
-.brand{
-  text-align:center;
-  margin-top:24px;
-}
-
-.brand h1{
-  margin:0;
-  color:var(--gold);
-  font-size:30px;
-  letter-spacing:4px;
-}
-
-.brand p{
-  margin:8px 0 0;
-  color:#ddd;
-  font-size:12px;
-  letter-spacing:2px;
-}
-
-/* ================= HOME ================= */
 
 .home{
   position:relative;
-  min-height:100vh;
+  width:100vw;
+  height:100vh;
   background:#000;
   opacity:0;
-  transform:scale(1.035);
-  animation:homeIn 1.2s ease forwards;
-  animation-delay:8.75s;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  transition:opacity 1s ease, transform 1s ease;
+  transform:scale(1.04);
   overflow:hidden;
 }
 
-.home-img{
+.home.show{
+  opacity:1;
+  transform:scale(1);
+}
+
+.home img{
   width:100%;
-  height:100vh;
-  object-fit:contain;
+  height:100%;
+  object-fit:cover;
   object-position:center;
-  display:block;
-  background:#000;
 }
 
-.home::after{
-  content:"";
+.menu-touch{
   position:absolute;
-  inset:0;
-  pointer-events:none;
-  background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.05),rgba(0,0,0,.28));
-}
-
-/* Hotspots invisibles para no poner texto encima */
-.menu-open{
-  position:absolute;
-  top:16px;
-  right:14px;
-  width:62px;
-  height:58px;
+  top:0;
+  left:0;
+  width:90px;
+  height:90px;
   z-index:5;
   background:transparent;
   border:0;
 }
 
-.cta-hotspot{
+.whatsapp-touch{
   position:absolute;
-  left:14%;
-  right:14%;
-  bottom:112px;
-  height:58px;
+  left:10%;
+  right:10%;
+  bottom:110px;
+  height:75px;
   z-index:5;
-  display:block;
 }
 
-/* ================= GLASS MENU ================= */
-
-.glass-menu{
+.menu{
   position:fixed;
   inset:0;
   z-index:10000;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .25s ease;
-  background:rgba(0,0,0,.38);
+  background:rgba(0,0,0,.42);
   backdrop-filter:blur(22px);
   -webkit-backdrop-filter:blur(22px);
+  opacity:0;
+  pointer-events:none;
+  transition:.25s ease;
 }
 
-.glass-menu.open{
+.menu.open{
   opacity:1;
   pointer-events:auto;
 }
 
-.menu-content{
+.close{
+  position:absolute;
+  top:24px;
+  right:24px;
+  background:transparent;
+  border:0;
+  color:#d6ad45;
+  font-size:46px;
+}
+
+.menu-inner{
   height:100%;
-  width:100%;
-  padding:72px 30px 34px;
+  padding:90px 34px 40px;
   display:flex;
   flex-direction:column;
   justify-content:center;
 }
 
-.close{
-  position:absolute;
-  top:20px;
-  right:20px;
-  color:var(--gold);
-  border:1px solid rgba(214,173,69,.55);
-  background:rgba(0,0,0,.18);
-  border-radius:14px;
-  width:48px;
-  height:48px;
-  font-size:28px;
-}
-
 .menu-link{
-  color:white;
+  color:#fff;
   text-decoration:none;
-  font-size:25px;
-  padding:16px 0;
-  border-bottom:1px solid rgba(214,173,69,.23);
+  font-size:24px;
   letter-spacing:1px;
+  padding:17px 0;
+  border-bottom:1px solid rgba(214,173,69,.28);
 }
 
 .menu-link span{
-  color:var(--gold);
-  margin-right:12px;
-  font-size:17px;
+  color:#d6ad45;
+  margin-right:14px;
 }
 
 .menu-wsp{
   margin-top:34px;
-  display:block;
+  border:1px solid #d6ad45;
+  color:#d6ad45;
   text-align:center;
   text-decoration:none;
-  color:#000;
-  font-weight:900;
-  padding:17px 18px;
   border-radius:16px;
-  background:linear-gradient(135deg,var(--gold2),#b88425);
-}
-
-/* ================= ANIMATIONS ================= */
-
-@keyframes sceneFade{
-  0%{opacity:0}
-  35%{opacity:1}
-  100%{opacity:0}
-}
-
-@keyframes lineMove{
-  0%{left:-40%;width:0;opacity:0}
-  30%{opacity:1}
-  70%{left:18%;width:64%}
-  100%{left:52%;width:0;opacity:0}
-}
-
-@keyframes logoScene{
-  0%{opacity:0;transform:scale(.88)}
-  25%{opacity:1;transform:scale(1)}
-  85%{opacity:1;transform:scale(1)}
-  100%{opacity:0;transform:scale(.96)}
-}
-
-@keyframes introOut{
-  to{opacity:0;visibility:hidden}
-}
-
-@keyframes homeIn{
-  to{opacity:1;transform:scale(1)}
-}
-
-@media(min-width:768px){
-  .home-img{
-    max-width:430px;
-    height:100vh;
-  }
+  padding:18px;
+  font-size:20px;
+  font-weight:bold;
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div class="intro">
-  <div class="intro-scene headlights"></div>
-  <div class="intro-scene"><div class="car-glow"></div></div>
-  <div class="intro-scene"><div class="car-glow two"></div></div>
-  <div class="travel-line"></div>
+<div class="intro" id="intro"></div>
 
-  <div class="intro-scene logo-wrap">
-    <div class="shield">
-      <div class="stars">★★★★★</div>
-      <div class="gd">GD</div>
-      <div class="car-silhouette"></div>
-    </div>
+<main class="home" id="home">
+  <img src="24096899-4B8B-4D5D-AF60-5029365007D2.png" alt="Golden Detail">
 
-    <div class="brand">
-      <h1>GOLDEN DETAIL</h1>
-      <p>PREMIUM AUTO DETAILING</p>
-    </div>
-  </div>
-</div>
+  <button class="menu-touch" onclick="openMenu()"></button>
 
-<!-- HOME -->
-<main class="home">
-  <img
-    class="home-img"
-    src="24096899-4B8B-4D5D-AF60-5029365007D2.png"
-    alt="Golden Detail Home"
-  />
-
-  <button class="menu-open" onclick="openMenu()" aria-label="Abrir menú"></button>
-
-  <a
-    class="cta-hotspot"
-    href="https://wa.me/59892006556?text=Hola%20Golden%20Detail,%20me%20gustaría%20solicitar%20un%20presupuesto%20para%20mi%20vehículo."
-    aria-label="Solicitar presupuesto"
-  ></a>
+  <a class="whatsapp-touch"
+     href="https://wa.me/59892006556?text=Hola%20Golden%20Detail,%20me%20gustaría%20solicitar%20un%20presupuesto%20para%20mi%20vehículo.">
+  </a>
 </main>
 
-<!-- MENU GLASS -->
-<div class="glass-menu" id="menu">
+<div class="menu" id="menu">
   <button class="close" onclick="closeMenu()">×</button>
 
-  <div class="menu-content">
-    <a class="menu-link" href="#"><span>01</span>Inicio</a>
-    <a class="menu-link" href="#"><span>02</span>Servicios</a>
-    <a class="menu-link" href="#"><span>03</span>Antes & Después</a>
-    <a class="menu-link" href="#"><span>04</span>Nuestra Historia</a>
-    <a class="menu-link" href="#"><span>05</span>Testimonios</a>
-    <a class="menu-link" href="#"><span>06</span>Contacto</a>
+  <div class="menu-inner">
+    <a class="menu-link" href="#"><span>01</span>INICIO</a>
+    <a class="menu-link" href="#"><span>02</span>SERVICIOS</a>
+    <a class="menu-link" href="#"><span>03</span>BENEFICIOS</a>
+    <a class="menu-link" href="#"><span>04</span>SOBRE NOSOTROS</a>
+    <a class="menu-link" href="#"><span>05</span>TRABAJOS REALIZADOS</a>
+    <a class="menu-link" href="#"><span>06</span>TESTIMONIOS</a>
+    <a class="menu-link" href="#"><span>07</span>CONTACTO</a>
 
-    <a
-      class="menu-wsp"
-      href="https://wa.me/59892006556?text=Hola%20Golden%20Detail,%20me%20gustaría%20solicitar%20un%20presupuesto%20para%20mi%20vehículo."
-    >
-      ESCRIBIR POR WHATSAPP
+    <a class="menu-wsp"
+       href="https://wa.me/59892006556?text=Hola%20Golden%20Detail,%20me%20gustaría%20solicitar%20un%20presupuesto%20para%20mi%20vehículo.">
+      ESCRÍBENOS<br>+598 92 006 556
     </a>
   </div>
 </div>
 
 <script>
+const base = "assets/intro/";
+
+const scenes = [
+  "IMG_3655.jpeg",
+  "IMG_3656.jpeg",
+  "IMG_3657.jpeg",
+  "IMG_3658.jpeg",
+  "IMG_3659.jpeg",
+  "IMG_3660.jpeg",
+  "IMG_3661.jpeg",
+  "IMG_3662.jpeg",
+  "IMG_3663.jpeg",
+  "IMG_3664.jpeg",
+  "IMG_3665.jpeg",
+  "IMG_3666.jpeg",
+  "IMG_3667.jpeg",
+  "IMG_3668.jpeg",
+  "IMG_3669.jpeg"
+];
+
+const times = [
+  1000,1000,1000,1000,
+  250,250,250,250,250,250,250,250,250,300,
+  1200
+];
+
+const intro = document.getElementById("intro");
+const home = document.getElementById("home");
+
+let index = 0;
+
+function showScene(){
+  if(index >= scenes.length){
+    intro.style.opacity = "0";
+    intro.style.transition = "opacity 1s ease";
+    home.classList.add("show");
+
+    setTimeout(()=>{
+      intro.style.display = "none";
+      document.body.style.overflow = "auto";
+    },1000);
+
+    return;
+  }
+
+  const img = document.createElement("img");
+  img.src = base + scenes[index];
+  img.className = "scene";
+  intro.appendChild(img);
+
+  setTimeout(()=> img.classList.add("active"), 50);
+
+  setTimeout(()=>{
+    img.classList.add("fade");
+
+    setTimeout(()=>{
+      img.remove();
+      index++;
+      showScene();
+    },450);
+
+  }, times[index]);
+}
+
+window.addEventListener("load", showScene);
+
 function openMenu(){
   document.getElementById("menu").classList.add("open");
 }
