@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Golden Detail</title>
 
 <style>
@@ -10,8 +10,8 @@
 body{
   margin:0;
   background:#000;
-  color:white;
-  font-family:Arial,sans-serif;
+  color:#fff;
+  font-family:Arial, sans-serif;
   overflow-x:hidden;
 }
 
@@ -25,148 +25,253 @@ body{
   align-items:center;
   justify-content:center;
   flex-direction:column;
-  animation:introExit 1.2s ease forwards;
-  animation-delay:7s;
+  animation:hideIntro 1s ease forwards;
+  animation-delay:8.5s;
 }
 
-.reflection{
+.lights{
   position:absolute;
-  width:80%;
-  height:120px;
-  top:28%;
+  width:100%;
+  height:100%;
+  background:
+    radial-gradient(circle at 30% 48%, rgba(214,173,69,.55), transparent 8%),
+    radial-gradient(circle at 70% 48%, rgba(214,173,69,.55), transparent 8%);
   opacity:0;
-  background:linear-gradient(90deg,transparent,rgba(214,173,69,.12),rgba(255,255,255,.18),rgba(214,173,69,.12),transparent);
-  filter:blur(10px);
-  border-radius:50%;
+  animation:lights 1.2s ease forwards;
+  animation-delay:1s;
 }
 
-.reflection.one{animation:reflectOne 1.4s ease forwards;animation-delay:.8s}
-.reflection.two{animation:reflectTwo 1.4s ease forwards;animation-delay:2.2s}
-
-.shield{
-  width:118px;
-  height:138px;
-  border:2px solid #d6ad45;
-  border-radius:44% 44% 56% 56%;
-  color:#d6ad45;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:42px;
-  font-weight:900;
-  letter-spacing:2px;
+.carLine{
+  position:absolute;
+  width:70%;
+  height:2px;
+  top:46%;
+  background:linear-gradient(90deg,transparent,#d6ad45,#fff,#d6ad45,transparent);
+  filter:blur(.4px);
   opacity:0;
-  transform:scale(.85);
-  box-shadow:0 0 30px rgba(214,173,69,.35);
-  animation:shieldShow 1.2s ease forwards;
-  animation-delay:4.6s;
+  animation:carLine 2.5s ease forwards;
+  animation-delay:2s;
 }
 
-.line{
+.goldLine{
   position:absolute;
   width:0;
   height:2px;
   background:#d6ad45;
-  top:50%;
-  left:-20%;
   box-shadow:0 0 18px #d6ad45;
-  animation:lineTravel 1.6s ease forwards;
-  animation-delay:3.8s;
+  animation:goldTravel 1.3s ease forwards;
+  animation-delay:4.3s;
 }
 
-.brand{
+.shield{
+  width:130px;
+  height:150px;
+  border:2px solid #d6ad45;
+  border-radius:42% 42% 55% 55%;
+  color:#d6ad45;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  transform:scale(.85);
+  box-shadow:0 0 35px rgba(214,173,69,.35);
+  animation:showShield .8s ease forwards;
+  animation-delay:5.3s;
+}
+
+.stars{
+  font-size:13px;
+  letter-spacing:3px;
+  margin-bottom:8px;
+}
+
+.gd{
+  font-size:38px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.carIcon{
+  font-size:22px;
+  margin-top:6px;
+}
+
+.brandIntro{
   text-align:center;
   opacity:0;
-  margin-top:24px;
-  animation:brandShow 1s ease forwards;
-  animation-delay:5.6s;
+  margin-top:22px;
+  animation:showBrand 1s ease forwards;
+  animation-delay:6.3s;
 }
 
-.brand h1{
-  margin:0;
+.brandIntro h1{
   color:#d6ad45;
-  letter-spacing:5px;
-  font-size:32px;
+  letter-spacing:4px;
+  font-size:30px;
+  margin:0;
 }
 
-.brand p{
-  margin:8px 0 0;
+.brandIntro p{
   color:#ddd;
   letter-spacing:2px;
-  font-size:13px;
+  font-size:12px;
+  margin-top:8px;
 }
 
 /* HOME */
 .home{
   min-height:100vh;
   background:
-    linear-gradient(180deg,rgba(0,0,0,.15),#000 92%),
-    url("24096899-4B8B-4D5D-AF60-5029365007D2.png") center/cover no-repeat;
+    linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.35),#000 94%),
+    url("24096899-4B8B-4D5D-AF60-5029365007D2.png") center/contain no-repeat;
+  background-color:#000;
   opacity:0;
   transform:scale(1.04);
-  animation:homeIn 1.4s ease forwards;
-  animation-delay:7.2s;
+  animation:homeIn 1.2s ease forwards;
+  animation-delay:8.6s;
+  position:relative;
 }
 
-.home-inner{
-  min-height:100vh;
+.topBar{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  padding:18px 20px;
   display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  padding:24px;
+  justify-content:space-between;
+  align-items:center;
+  z-index:5;
+}
+
+.menuBtn{
+  background:rgba(0,0,0,.35);
+  color:#d6ad45;
+  border:1px solid rgba(214,173,69,.5);
+  border-radius:12px;
+  padding:10px 14px;
+  font-size:24px;
+}
+
+.homeBottom{
+  position:absolute;
+  left:18px;
+  right:18px;
+  bottom:22px;
+  z-index:5;
 }
 
 .cta{
-  display:inline-block;
-  background:linear-gradient(135deg,#f3cc72,#b98525);
+  display:block;
+  text-align:center;
+  background:linear-gradient(135deg,#f2cd73,#b88425);
   color:#000;
+  font-weight:900;
   padding:16px 22px;
+  border-radius:14px;
+  text-decoration:none;
+  box-shadow:0 0 22px rgba(214,173,69,.25);
+}
+
+.location{
+  text-align:center;
+  color:#d6ad45;
+  letter-spacing:2px;
+  font-size:12px;
+  margin-top:14px;
+}
+
+/* GLASS MENU */
+.menuOverlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  z-index:1000;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s ease;
+}
+
+.menuOverlay.open{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.menuPanel{
+  width:100%;
+  height:100%;
+  padding:34px 28px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.closeBtn{
+  position:absolute;
+  top:20px;
+  right:20px;
+  background:transparent;
+  color:#d6ad45;
+  border:1px solid rgba(214,173,69,.55);
   border-radius:12px;
+  padding:10px 14px;
+  font-size:22px;
+}
+
+.menuItem{
+  display:block;
+  color:#fff;
+  text-decoration:none;
+  font-size:25px;
+  padding:17px 0;
+  border-bottom:1px solid rgba(214,173,69,.22);
+  letter-spacing:1px;
+}
+
+.menuItem span{
+  color:#d6ad45;
+  margin-right:10px;
+}
+
+.menuWhatsapp{
+  margin-top:34px;
+  display:block;
+  text-align:center;
+  background:linear-gradient(135deg,#f2cd73,#b88425);
+  color:#000;
+  padding:16px 20px;
+  border-radius:14px;
   font-weight:900;
   text-decoration:none;
-  text-align:center;
-  margin-bottom:20px;
 }
 
-.note{
-  color:#d6ad45;
-  text-align:center;
-  font-size:13px;
-  letter-spacing:2px;
-  margin-bottom:18px;
-}
-
-@keyframes reflectOne{
-  0%{opacity:0;transform:translateX(-40px)}
+@keyframes lights{
+  0%{opacity:0}
   45%{opacity:1}
-  100%{opacity:0;transform:translateX(30px)}
+  100%{opacity:0}
 }
-
-@keyframes reflectTwo{
-  0%{opacity:0;transform:translateX(40px)}
-  45%{opacity:1}
-  100%{opacity:0;transform:translateX(-30px)}
+@keyframes carLine{
+  0%{opacity:0;transform:translateX(-35px)}
+  40%{opacity:1}
+  100%{opacity:0;transform:translateX(35px)}
 }
-
-@keyframes lineTravel{
-  0%{width:0;left:-20%;opacity:0}
-  30%{opacity:1}
-  70%{width:70%;left:15%}
-  100%{width:0;left:50%;opacity:0}
+@keyframes goldTravel{
+  0%{width:0;opacity:0}
+  35%{width:70%;opacity:1}
+  100%{width:0;opacity:0}
 }
-
-@keyframes shieldShow{
+@keyframes showShield{
   to{opacity:1;transform:scale(1)}
 }
-
-@keyframes brandShow{
+@keyframes showBrand{
   to{opacity:1}
 }
-
-@keyframes introExit{
+@keyframes hideIntro{
   to{opacity:0;visibility:hidden}
 }
-
 @keyframes homeIn{
   to{opacity:1;transform:scale(1)}
 }
@@ -176,26 +281,61 @@ body{
 <body>
 
 <div class="intro">
-  <div class="reflection one"></div>
-  <div class="reflection two"></div>
-  <div class="line"></div>
+  <div class="lights"></div>
+  <div class="carLine"></div>
+  <div class="goldLine"></div>
 
-  <div class="shield">GD</div>
+  <div class="shield">
+    <div class="stars">★★★★★</div>
+    <div class="gd">GD</div>
+    <div class="carIcon">▱▰▱</div>
+  </div>
 
-  <div class="brand">
+  <div class="brandIntro">
     <h1>GOLDEN DETAIL</h1>
     <p>PREMIUM AUTO DETAILING</p>
   </div>
 </div>
 
-<main class="home">
-  <div class="home-inner">
+<section class="home">
+  <div class="topBar">
+    <div></div>
+    <button class="menuBtn" onclick="openMenu()">⋮</button>
+  </div>
+
+  <div class="homeBottom">
     <a class="cta" href="https://wa.me/59892006556?text=Hola%20Golden%20Detail,%20me%20gustaría%20solicitar%20un%20presupuesto%20para%20mi%20vehículo.">
       SOLICITAR PRESUPUESTO
     </a>
-    <div class="note">TRABAJAMOS SOLO EN MALDONADO</div>
+    <div class="location">TRABAJAMOS SOLO EN MALDONADO</div>
   </div>
-</main>
+</section>
+
+<div class="menuOverlay" id="menu">
+  <button class="closeBtn" onclick="closeMenu()">×</button>
+
+  <div class="menuPanel">
+    <a class="menuItem" href="#"><span>01</span>Inicio</a>
+    <a class="menuItem" href="#"><span>02</span>Servicios</a>
+    <a class="menuItem" href="#"><span>03</span>Antes & Después</a>
+    <a class="menuItem" href="#"><span>04</span>Nuestra Historia</a>
+    <a class="menuItem" href="#"><span>05</span>Testimonios</a>
+    <a class="menuItem" href="#"><span>06</span>Contacto</a>
+
+    <a class="menuWhatsapp" href="https://wa.me/59892006556?text=Hola%20Golden%20Detail,%20me%20gustaría%20solicitar%20un%20presupuesto%20para%20mi%20vehículo.">
+      ESCRIBIR POR WHATSAPP
+    </a>
+  </div>
+</div>
+
+<script>
+function openMenu(){
+  document.getElementById("menu").classList.add("open");
+}
+function closeMenu(){
+  document.getElementById("menu").classList.remove("open");
+}
+</script>
 
 </body>
 </html>
